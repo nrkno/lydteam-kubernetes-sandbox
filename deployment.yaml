@@ -15,7 +15,7 @@ metadata:
     nrk/documentation:      https://github.com/nrkno/lydteam-kubernetes-sandbox
     nrk/repository:         https://github.com/nrkno/lydteam-kubernetes-sandbox
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: lydteam-sandbox-nginx
