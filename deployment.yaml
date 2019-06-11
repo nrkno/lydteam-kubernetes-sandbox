@@ -2,21 +2,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: krorvik-deployment
+  name: lydteam-sandbox-deployment
   labels:
-    app: krorvik-nginx
+    app:               lydteam-sandbox-nginx
+  annotations:
+    nrk/criticality:        4
+    nrk/environment:        test
+    nrk/dependencies:       nginx
+    nrk/email-contact:      kenneth.rorvik@nrk.no
+    nrk/slack-contact:      "#lydteamet-sandbox"
+    nrk/slack-notification: "#lydteamet-sandbox"
+    nrk/documentation:      https://github.com/nrkno/lydteam-kubernetes-sandbox
+    nrk/repository:         https://github.com/nrkno/lydteam-kubernetes-sandbox
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: krorvik-nginx
+      app: lydteam-sandbox-nginx
   template:
     metadata:
       labels:
-        app: krorvik-nginx
+        app: lydteam-sandbox-nginx
     spec:
       containers:
-      - name: krorvik-nginx
+      - name: lydteam-sandbox-nginx
         image: nginx:latest
         ports:
         - containerPort: 80

@@ -1,4 +1,4 @@
 #!/bin/bash
-kubectl delete ingress krorvik-ingress
-kubectl delete service krorvik-service
-kubectl delete deployment krorvik-deployment
+kubectl delete ingress lydteam-sandbox-ingress
+kubectl delete service lydteam-sandbox-service
+kubectl delete deployment lydteam-sandbox-deployment

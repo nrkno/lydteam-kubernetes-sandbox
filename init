@@ -1,3 +1,0 @@
-#!/bin/bash
-kubectl create namespace n642837-test
-kubens n642837-test

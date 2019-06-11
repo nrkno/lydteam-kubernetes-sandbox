@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lydteam-sandbox
+  annotations:
+    nrk/creator:            Kenneth Rørvik
+    nrk/email-contact:      kenneth.rorvik@nrk.no
+    nrk/email-notification: kenneth.rorvik@nrk.no
+    nrk/slack-contact:      "#lydteamet-sandbox"
+    nrk/slack-notification: "#lydteamet-sandbox"
+    nrk/documentation:      https://github.com/nrkno/lydteam-kubernetes-sandbox
+

@@ -2,16 +2,16 @@
 kind: Ingress
 apiVersion: extensions/v1beta1
 metadata:
-  name: krorvik-ingress
+  name: lydteam-sandbox
 spec:
   rules:
-    - host: krorvik-ingress.kubeint.nrk.no
+    - host: lydteam-sandbox.kubeint.nrk.no
       http:
         paths:
           - backend:
-              serviceName: krorvik-service
+              serviceName: lydteam-sandbox-service
               servicePort: 80
             path: /
   tls:
     - hosts:
-      - krorvik-ingress.kubeint.nrk.no
+      - lydteam-sandbox.kubeint.nrk.no
