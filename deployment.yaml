@@ -26,7 +26,9 @@ spec:
     spec:
       containers:
       - name: lydteam-sandbox-nginx
-        image: nginx:latest
+        image: plattform.azurecr.io/lydteamet/nginx:sandbox
         ports:
         - containerPort: 80
       restartPolicy: Always
+      imagePullSecrets:
+      - name: lydteam-sandbox-sp-plattform-ps

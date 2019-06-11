@@ -1,0 +1,13 @@
+#!/bin/bash
+export SP_NAME=lydteam-sandbox-sp;
+export K8S_NAMESPACE=lydteam-sandbox;
+export NRK_EMAIL=kenneth.rorvik@nrk.no;
+export ACR_NAME=plattform;
+export SECRETNAME=${SP_NAME}-${ACR_NAME}-ps;
+export SP_ACR_ID=$(az acr show --subscription Drift --name $ACR_NAME --query id --output tsv);
+export ACR_LOGIN_SERVER=$(az acr show --subscription Drift --name $ACR_NAME --query loginServer --output tsv);
+export SP_PASS=$(az ad sp create-for-rbac --years 99 --subscription Drift --name ${SP_NAME} --scopes ${SP_ACR_ID} --role acrpull --query password --output tsv);
+export SP_ID=$(az ad sp show --subscription Drift --id http://${SP_NAME} --query appId --output tsv);
+kubectl -n ${K8S_NAMESPACE} create secret docker-registry ${SECRETNAME} --docker-server="${ACR_LOGIN_SERVER}" --docker-username="${SP_ID}" --docker-password="${SP_PASS}" --docker-email="${NRK_EMAIL}";
+kubectl -n ${K8S_NAMESPACE} patch serviceaccount default -p "{\"imagePullSecrets\": [{\"name\": \"${SECRETNAME}\"}]}";
+echo "SP-Name: ${SP_NAME} SP-ID: ${SP_ID} SP-Pass: ${SP_PASS} Kubernetes Secret: ${SECRETNAME}"
