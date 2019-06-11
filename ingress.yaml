@@ -1,0 +1,17 @@
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: krorvik-ingress
+spec:
+  rules:
+    - host: krorvik-ingress.kubeint.nrk.no
+      http:
+        paths:
+          - backend:
+              serviceName: krorvik-service
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+      - krorvik-ingress.kubeint.nrk.no

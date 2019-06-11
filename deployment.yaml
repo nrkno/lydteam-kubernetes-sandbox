@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krorvik-deployment
+  labels:
+    app: krorvik-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: krorvik-nginx
+  template:
+    metadata:
+      labels:
+        app: krorvik-nginx
+    spec:
+      containers:
+      - name: krorvik-nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+      restartPolicy: Always
